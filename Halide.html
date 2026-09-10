@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/Hypatom/Downloads/index.html#gallery -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halide — Photography, uncompressed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&amp;family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #15130f;
+    --panel: #1c1a15;
+    --panel-2: #211e18;
+    --paper: #f2ece1;
+    --ash: #9a9184;
+    --ash-dim: #6b6459;
+    --line: #322d24;
+    --safelight: #d24d1c;
+    --safelight-bright: #e86a37;
+    --safelight-dim: #5c2410;
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  h1,h2,h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    line-height: 1.08;
+    margin:0;
+    letter-spacing: -0.01em;
+  }
+
+  .wrap{
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--safelight-bright);
+    outline-offset: 3px;
+  }
+
+  /* faint grain texture */
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 500;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    background: rgba(21,19,15,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .brand-mark{
+    width:9px; height:9px; border-radius:50%;
+    background: var(--safelight);
+    box-shadow: 0 0 10px 2px rgba(210,77,28,0.55);
+  }
+  .nav-links{ display:flex; gap:36px; }
+  .nav-links a{
+    font-size: 0.94rem;
+    color: var(--ash);
+    transition: color .15s ease;
+  }
+  .nav-links a:hover{ color: var(--paper); }
+  .nav-cta{ display:flex; align-items:center; gap:22px; }
+  .nav-cta > a{ font-size: 0.94rem; color: var(--ash); }
+  .nav-cta > a:hover{ color: var(--paper); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-size: 0.92rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{
+    background: var(--safelight);
+    color: #1a0d07;
+  }
+  .btn-primary:hover{ background: var(--safelight-bright); transform: translateY(-1px); }
+  .btn-outline{
+    border-color: var(--line);
+    color: var(--paper);
+  }
+  .btn-outline:hover{ border-color: var(--ash-dim); }
+  .btn-sm{ padding: 9px 16px; font-size: 0.82rem; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 110px;
+    overflow: hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items:center;
+  }
+  .eyebrow-free{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--ash-dim);
+    letter-spacing: 0.03em;
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 4.2vw, 3.7rem);
+    max-width: 11ch;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--safelight-bright);
+  }
+  .hero p{
+    margin: 26px 0 34px;
+    color: var(--ash);
+    max-width: 42ch;
+    font-size: 1.05rem;
+  }
+  .hero-actions{ display:flex; gap: 16px; flex-wrap:wrap; }
+
+  .hero-visual{
+    position: relative;
+    height: 460px;
+  }
+  .frame{
+    position:absolute;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 10px 10px 34px;
+    box-shadow: 0 30px 60px -25px rgba(0,0,0,0.65);
+  }
+  .frame img{ width:100%; height:100%; object-fit:cover; filter: saturate(0.92) contrast(1.04); }
+  .frame-index{
+    position:absolute;
+    bottom: 10px; left: 11px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ash-dim);
+    letter-spacing: 0.04em;
+  }
+  .frame-a{ width: 230px; height: 290px; top: 0; left: 40px; transform: rotate(-4deg); z-index:3; }
+  .frame-b{ width: 210px; height: 260px; top: 120px; left: 250px; transform: rotate(3deg); z-index:2; }
+  .frame-c{ width: 170px; height: 210px; top: 20px; left: 0; transform: rotate(6deg); z-index:1; opacity: 0.75; }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{ padding: 100px 0; }
+  .section-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 52px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 30px;
+  }
+  .section-head h2{ font-size: clamp(1.9rem, 3vw, 2.5rem); max-width: 14ch; }
+  .section-head p{ color: var(--ash); max-width: 34ch; font-size: 0.98rem; margin:0; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  .card{
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--panel);
+    aspect-ratio: 3/4;
+  }
+  .card:nth-child(3n+1){ aspect-ratio: 3/4; }
+  .card img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform .5s ease;
+  }
+  .card:hover img{ transform: scale(1.06); }
+  .card-overlay{
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(21,19,15,0) 45%, rgba(21,19,15,0.92) 100%);
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+  .card-tag{
+    align-self: flex-start;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
+    color: var(--ash);
+    border: 1px solid rgba(242,236,225,0.22);
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: auto;
+  }
+  .card-foot{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .card-foot span{ font-size: 0.85rem; color: var(--paper); }
+  .dl-btn{
+    width: 34px; height:34px;
+    border-radius:50%;
+    background: rgba(242,236,225,0.1);
+    border: 1px solid rgba(242,236,225,0.25);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .dl-btn:hover{ background: var(--safelight); border-color: var(--safelight); }
+  .dl-btn svg{ width:15px; height:15px; }
+
+  .gallery-more{
+    text-align:center;
+    margin-top: 46px;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 0;
+  }
+  .stats .wrap{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat{ text-align:center; padding: 0 20px; }
+  .stat + .stat{ border-left: 1px solid var(--line); }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--paper);
+  }
+  .stat span{ color: var(--ash); font-size: 0.88rem; }
+
+  /* ---------- PREMIUM ---------- */
+  .premium{
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .premium-top{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items:center;
+    padding-bottom: 70px;
+  }
+  .premium-top h2{ font-size: clamp(2rem, 3.2vw, 2.7rem); max-width: 12ch; }
+  .premium-top > div > p{ color: var(--ash); margin: 22px 0 0; max-width: 44ch; }
+
+  .compare{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+  }
+  .compare-row{
+    display:grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr;
+    align-items:center;
+  }
+  .compare-row + .compare-row{ border-top: 1px solid var(--line); }
+  .compare-row.head{ background: var(--panel-2); }
+  .compare-row div{ padding: 15px 18px; font-size: 0.86rem; }
+  .compare-row.head div{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ash-dim);
+    letter-spacing: 0.03em;
+  }
+  .compare-row div:first-child{ color: var(--paper); }
+  .compare-row div:not(:first-child){ text-align:center; color: var(--ash); }
+  .check{ color: var(--safelight-bright); font-size: 1rem; }
+  .dash{ color: var(--ash-dim); }
+
+  .pricing{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .plan{
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 34px 30px;
+  }
+  .plan.featured{
+    border-color: var(--safelight-dim);
+    background: linear-gradient(160deg, rgba(210,77,28,0.10), rgba(28,26,21,1) 55%);
+    position: relative;
+  }
+  .plan-badge{
+    position:absolute;
+    top: -12px; right: 26px;
+    background: var(--safelight);
+    color: #1a0d07;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+  .plan-name{ color: var(--ash); font-size: 0.9rem; margin-bottom: 14px; }
+  .plan-price{ display:flex; align-items:baseline; gap:6px; margin-bottom: 6px; }
+  .plan-price b{ font-family:'Fraunces', serif; font-size: 2.4rem; font-weight: 500; }
+  .plan-price span{ color: var(--ash); font-size: 0.88rem; }
+  .plan-note{ color: var(--ash-dim); font-size: 0.82rem; margin-bottom: 26px; }
+  .plan ul{ margin-bottom: 28px; }
+  .plan li{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size: 0.88rem; color: var(--ash);
+    padding: 7px 0;
+  }
+  .plan li .check{ margin-top: 2px; }
+  .plan .btn{ width:100%; justify-content:center; }
+
+  /* ---------- QUOTE ---------- */
+  .quote-section{ padding: 100px 0; }
+  .quote-section .wrap{ max-width: 760px; text-align:center; }
+  blockquote{
+    margin:0;
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    line-height: 1.45;
+    color: var(--paper);
+  }
+  .quote-attr{
+    margin-top: 26px;
+    color: var(--ash);
+    font-size: 0.9rem;
+  }
+  .quote-attr b{ color: var(--paper); font-weight: 600; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top: 1px solid var(--line); padding: 64px 0 40px; }
+  .foot-top{
+    display:grid;
+    grid-template-columns: 1.3fr repeat(3, 0.7fr);
+    gap: 40px;
+    padding-bottom: 48px;
+  }
+  .foot-brand p{ color: var(--ash); font-size: 0.9rem; max-width: 30ch; margin: 16px 0 0; }
+  .foot-col h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: var(--ash-dim);
+    letter-spacing: 0.03em;
+    margin-bottom: 16px;
+  }
+  .foot-col a{
+    display:block;
+    color: var(--ash);
+    font-size: 0.88rem;
+    padding: 6px 0;
+  }
+  .foot-col a:hover{ color: var(--paper); }
+  .foot-bottom{
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+    display:flex;
+    justify-content: space-between;
+    color: var(--ash-dim);
+    font-size: 0.82rem;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .wrap{ padding: 0 24px; }
+    .nav-links{ display:none; }
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .hero-visual{ height: 380px; margin-top: 10px; }
+    .gallery{ grid-template-columns: repeat(2, 1fr); }
+    .stats .wrap{ grid-template-columns: 1fr; gap: 26px; }
+    .stat + .stat{ border-left:none; border-top: 1px solid var(--line); padding-top: 26px; }
+    .premium-top{ grid-template-columns: 1fr; gap: 40px; }
+    .pricing{ grid-template-columns: 1fr; }
+    .foot-top{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .gallery{ grid-template-columns: 1fr 1fr; }
+    .section{ padding: 70px 0; }
+    .section-head{ flex-direction:column; align-items:flex-start; gap: 14px; }
+    .compare-row{ grid-template-columns: 1.4fr 0.7fr 0.7fr; }
+    .foot-top{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="file:///C:/Users/Hypatom/Downloads/index.html#" class="brand"><span class="brand-mark"></span>Halide</a>
+    <ul class="nav-links">
+      <li><a href="file:///C:/Users/Hypatom/Downloads/index.html#gallery">Explore</a></li>
+      <li><a href="file:///C:/Users/Hypatom/Downloads/index.html#premium">Premium</a></li>
+      <li><a href="file:///C:/Users/Hypatom/Downloads/index.html#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="file:///C:/Users/Hypatom/Downloads/index.html#">Sign in</a>
+      <a href="file:///C:/Users/Hypatom/Downloads/index.html#pricing" class="btn btn-primary btn-sm">Get Premium</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow-free">Free downloads, no account required</div>
+      <h1>Every frame,<br>ready to <em>keep</em>.</h1>
+      <p>A working library of photography from independent shooters — free to download for personal work, or unlocked in full resolution with a Premium subscription.</p>
+      <div class="hero-actions">
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#gallery" class="btn btn-primary">Browse the library</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#premium" class="btn btn-outline">See Premium</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="frame frame-c"><img src="https://picsum.photos/id/1043/400/520" alt="Textured landscape photograph"></div>
+      <div class="frame frame-b"><img src="./Halide_files/1015-420x520.jpg" alt="River winding through mountains"><span class="frame-index">No. 015</span></div>
+      <div class="frame frame-a"><img src="./Halide_files/1018-460x600.jpg" alt="Mountain valley at dusk"><span class="frame-index">No. 018</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Free to download</h2>
+      <p>Full resolution up to 2048px. Always free, always credited to the photographer who shot it.</p>
+    </div>
+    <div class="gallery">
+
+      <div class="card">
+        <img src="./Halide_files/1025-500x650.jpg" alt="Dog resting on wooden floor">
+        <div class="card-overlay">
+          <span class="card-tag">ANIMAL</span>
+          <div class="card-foot"><span>Nadia Voss</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1031-500x650.jpg" alt="Desk with laptop and coffee">
+        <div class="card-overlay">
+          <span class="card-tag">WORKSPACE</span>
+          <div class="card-foot"><span>Theo Marsh</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1040-500x650.jpg" alt="City street at night">
+        <div class="card-overlay">
+          <span class="card-tag">URBAN</span>
+          <div class="card-foot"><span>Priya Anand</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1050-500x650.jpg" alt="Forest path in fog">
+        <div class="card-overlay">
+          <span class="card-tag">NATURE</span>
+          <div class="card-foot"><span>Otis Kane</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1074-500x650.jpg" alt="Cat looking through window">
+        <div class="card-overlay">
+          <span class="card-tag">ANIMAL</span>
+          <div class="card-foot"><span>Elin Bergström</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1060-500x650.jpg" alt="Close up of green plant leaves">
+        <div class="card-overlay">
+          <span class="card-tag">PLANTS</span>
+          <div class="card-foot"><span>Marcus Idehen</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1062-500x650.jpg" alt="Portrait in natural light">
+        <div class="card-overlay">
+          <span class="card-tag">PORTRAIT</span>
+          <div class="card-foot"><span>Sana Rahimi</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="./Halide_files/1080-500x650.jpg" alt="Coastal cliffs and ocean">
+        <div class="card-overlay">
+          <span class="card-tag">LANDSCAPE</span>
+          <div class="card-foot"><span>Jonas Ferreira</span>
+            <button class="dl-btn" aria-label="Download photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14"></path></svg></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gallery-more">
+      <a href="file:///C:/Users/Hypatom/Downloads/index.html#" class="btn btn-outline">Load more photographs</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b>82,400</b><span>photographs in the library</span></div>
+    <div class="stat"><b>3,600</b><span>independent photographers</span></div>
+    <div class="stat"><b>190</b><span>countries shot on location</span></div>
+  </div>
+</section>
+
+<section class="premium section" id="premium">
+  <div class="wrap">
+    <div class="premium-top">
+      <div>
+        <h2>Unlock the full archive.</h2>
+        <p>Premium gives you the original files straight off the card — full resolution, no watermark, and the right to use them commercially. New collections land every Friday.</p>
+      </div>
+      <div class="compare">
+        <div class="compare-row head">
+          <div>Included</div>
+          <div>Free</div>
+          <div>Premium</div>
+        </div>
+        <div class="compare-row"><div>Resolution</div><div>2048px</div><div>Full RAW-derived</div></div>
+        <div class="compare-row"><div>Commercial license</div><div class="dash">—</div><div class="check">✓</div></div>
+        <div class="compare-row"><div>Weekly new drops</div><div class="dash">—</div><div class="check">✓</div></div>
+        <div class="compare-row"><div>Exclusive collections</div><div class="dash">—</div><div class="check">✓</div></div>
+        <div class="compare-row"><div>Download watermark</div><div>Yes</div><div class="dash">None</div></div>
+        <div class="compare-row"><div>Support</div><div>Community</div><div>Priority</div></div>
+      </div>
+    </div>
+
+    <div class="pricing" id="pricing">
+      <div class="plan">
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price"><b>$12</b><span>/ month</span></div>
+        <div class="plan-note">Billed monthly, cancel any time</div>
+        <ul>
+          <li><span class="check">✓</span> Full-resolution downloads</li>
+          <li><span class="check">✓</span> Commercial usage rights</li>
+          <li><span class="check">✓</span> Weekly new collections</li>
+          <li><span class="check">✓</span> No watermark</li>
+        </ul>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#" class="btn btn-outline">Start Monthly</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">SAVE 33%</div>
+        <div class="plan-name">Annual</div>
+        <div class="plan-price"><b>$8</b><span>/ month, billed yearly</span></div>
+        <div class="plan-note">$96 billed once a year</div>
+        <ul>
+          <li><span class="check">✓</span> Everything in Monthly</li>
+          <li><span class="check">✓</span> Exclusive annual collections</li>
+          <li><span class="check">✓</span> Priority support</li>
+          <li><span class="check">✓</span> Early access to new shooters</li>
+        </ul>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#" class="btn btn-primary">Start Annual</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="wrap">
+    <blockquote>"I stopped digging through five different stock sites. Halide's Premium library is small enough to actually browse and good enough that everything I pick looks intentional."</blockquote>
+    <div class="quote-attr"><b>Dana Whitfield</b> — Creative Director, Fieldwork Studio</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#" class="brand"><span class="brand-mark"></span>Halide</a>
+        <p>A working photography library built by independent shooters, for people who make things.</p>
+      </div>
+      <div class="foot-col">
+        <h4>LIBRARY</h4>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#gallery">Free downloads</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#premium">Premium</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">Collections</a>
+      </div>
+      <div class="foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">Sign in</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#pricing">Pricing</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">For photographers</a>
+      </div>
+      <div class="foot-col">
+        <h4>COMPANY</h4>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">About</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">License terms</a>
+        <a href="file:///C:/Users/Hypatom/Downloads/index.html#">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Halide. All photographs remain property of their photographers.</span>
+      <span>Made for people who make things.</span>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
